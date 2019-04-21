@@ -1,0 +1,9 @@
+# emacs backups
+**/~
+*~
+# object files
+**/*.o
+*.o
+# numlim
+numlim
+numlim_test.cpp

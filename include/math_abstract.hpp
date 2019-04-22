@@ -26,9 +26,7 @@ namespace oop_labs
         AbstractTable(int, int, filler fun = filler());
         AbstractTable(const AbstractTable&);
         AbstractTable(AbstractTable&&);
-        AbstractTable(double *, int, int);
-        AbstractTable(double **, int, int);
-        
+        AbstractTable(double *, int, int);        
         AbstractTable& T(void);
 
     public:

@@ -75,13 +75,9 @@ namespace oop_labs
     }
 
     AbstractTable::AbstractTable(double *arr, int m, int n)
-        : AbstractTable(m, n, [arr, n](int i, int j) { return arr[i * n + j]; })
+        : AbstractTable(m, n, arr ? filler() : [arr, n](int i, int j) { return arr[i * n + j]; })
     {}
 
-    AbstractTable::AbstractTable(double **arr, int m, int n)
-        : AbstractTable(m, n, [arr](int i, int j) { return arr[i][j]; })
-    {}
-    
     AbstractTable::~AbstractTable(void)
     {
         freem();

@@ -73,12 +73,6 @@ namespace oop_labs
     {
 	std::cout << "Конструктор матрицы #" << id << std::endl;        
     }
-
-    Matrix::Matrix(double **arr, int m, int n)
-        : AbstractTable::AbstractTable(arr, m, n)
-    {
-	std::cout << "Конструктор матрицы #" << id << std::endl;        
-    }
     
     Matrix::~Matrix(void)
     {

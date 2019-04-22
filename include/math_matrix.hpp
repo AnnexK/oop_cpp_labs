@@ -36,7 +36,6 @@ namespace oop_labs
         Matrix(AbstractTable&&);
 
         Matrix(double *, int, int);
-        Matrix(double **, int, int);
         
         virtual ~Matrix(void);
 

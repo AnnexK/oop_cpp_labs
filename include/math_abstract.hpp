@@ -22,11 +22,11 @@ namespace oop_labs
         unsigned int id;
         static unsigned int count;
 
-        AbstractTable(int m = 0, filler fun = filler());
-        AbstractTable(int, int, filler fun = filler());
+        explicit AbstractTable(int m = 0, const filler& fun = filler());
+        AbstractTable(int, int, const filler& fun = filler());
         AbstractTable(const AbstractTable&);
         AbstractTable(AbstractTable&&);
-        AbstractTable(double *, int, int);        
+        AbstractTable(const double *, int, int);        
         AbstractTable& T(void);
 
     public:

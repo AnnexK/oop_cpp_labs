@@ -11,7 +11,7 @@ namespace oop_labs
     class Vector : public AbstractTable
     {
     public:
-        explicit Vector(int m = 0, vfiller fun = vfiller());
+        explicit Vector(int m = 0, const vfiller& fun = vfiller());
 
         Vector(const Vector&);
         Vector(Vector&&);
@@ -19,7 +19,7 @@ namespace oop_labs
         Vector(const AbstractTable&);
         Vector(AbstractTable &&);
 
-        Vector(double *, int);
+        Vector(const double *, int);
         
         virtual ~Vector(void);
 
@@ -39,7 +39,7 @@ namespace oop_labs
         
         virtual Vector& operator +=(const AbstractTable&) override;
         virtual Vector& operator -=(const AbstractTable&) override;
-        virtual Vector& operator *=(const AbstractTable&) override;
+        virtual Vector& operator *=(const AbstractTable&) override;     
     };
     
 }

@@ -26,8 +26,8 @@ namespace oop_labs
     public:
         using AbstractTable::T;
         
-        explicit Matrix(int m = 0, filler fun = filler());
-        Matrix(int, int, filler fun = filler());
+        explicit Matrix(int m = 0, const filler& fun = filler());
+        Matrix(int, int, const filler& fun = filler());
         
         Matrix(const Matrix&);
         Matrix(Matrix&&);
@@ -35,13 +35,16 @@ namespace oop_labs
         Matrix(const AbstractTable&);
         Matrix(AbstractTable&&);
 
-        Matrix(double *, int, int);
+        Matrix(const double *, int, int);
         
         virtual ~Matrix(void);
 
         Row operator [](int);
         const Row operator [](int) const;
 
+        int get_nrows(void) const;
+        int get_ncols(void) const;
+        
         virtual const Matrix& operator =(const Matrix&);
         virtual Matrix& operator =(Matrix&&);
 

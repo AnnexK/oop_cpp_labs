@@ -32,13 +32,13 @@ namespace oop_labs
         return data[i];
     }
     
-    Matrix::Matrix(int m, filler fun):
+    Matrix::Matrix(int m, const filler& fun):
 	AbstractTable::AbstractTable(m, m, fun)
     {
 	std::cout << "Конструктор матрицы #" << id << std::endl;
     }
     
-    Matrix::Matrix(int m, int n, filler fun):
+    Matrix::Matrix(int m, int n, const filler& fun):
 	AbstractTable::AbstractTable(m, n, fun)
     {
 	std::cout << "Конструктор матрицы #" << id << std::endl;
@@ -68,7 +68,7 @@ namespace oop_labs
 	std::cout << "Конструктор матрицы #" << id << std::endl;
     }
 
-    Matrix::Matrix(double *arr, int m, int n)
+    Matrix::Matrix(const double *arr, int m, int n)
         : AbstractTable::AbstractTable(arr, m, n)
     {
 	std::cout << "Конструктор матрицы #" << id << std::endl;        
@@ -122,5 +122,15 @@ namespace oop_labs
         Matrix ret = a;
         ret.T();
         return ret;
+    }
+
+    int Matrix::get_ncols(void) const
+    {
+        return ncols;
+    }
+
+    int Matrix::get_nrows(void) const
+    {
+        return nrows;
     }
 }

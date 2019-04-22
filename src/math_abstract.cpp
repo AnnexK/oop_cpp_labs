@@ -32,11 +32,11 @@ namespace oop_labs
         if (data) delete[] data;
     }
 
-    AbstractTable::AbstractTable(int m, filler fun)
+    AbstractTable::AbstractTable(int m, const filler& fun)
         : AbstractTable::AbstractTable(m, m, fun)
     {}
     
-    AbstractTable::AbstractTable(int m, int n, filler fun)
+    AbstractTable::AbstractTable(int m, int n, const filler& fun)
 	: nrows (m), ncols (n), id (count)
     {
 	try
@@ -74,7 +74,7 @@ namespace oop_labs
         count++;
     }
 
-    AbstractTable::AbstractTable(double *arr, int m, int n)
+    AbstractTable::AbstractTable(const double *arr, int m, int n)
         : AbstractTable(m, n, arr ? filler() : [arr, n](int i, int j) { return arr[i * n + j]; })
     {}
 

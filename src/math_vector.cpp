@@ -5,7 +5,7 @@
 
 namespace oop_labs
 {
-    Vector::Vector(int len, vfiller fun):
+    Vector::Vector(int len, const vfiller& fun):
 	AbstractTable::AbstractTable(len, len ? 1 : 0) // создание канонического вектора 0 x 0 или len x 1
     {
         if (fun)

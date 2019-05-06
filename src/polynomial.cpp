@@ -15,12 +15,12 @@ namespace oop_labs
 	return ret;
     }
     
-    my_polynomial::my_polynomial(int size, double (*fun)(int))
-    {
-	if (size <= 0)
-	    throw id_exception("Ошибка: размер не может быть меньше 0", count);
+    my_polynomial::my_polynomial(int degree, double (*fun)(int))
+    {        
+	if (degree < 0)
+	    throw id_exception("Ошибка: максимальная степень не может быть меньше 0", count);
         
-	for (int i = 0; i < size; i++)
+	for (int i = 0; i <= degree; i++)
 	{
 	    data.push_back(fun != nullptr ? fun(i) : 0.0);
 	}
@@ -30,11 +30,12 @@ namespace oop_labs
     my_polynomial::my_polynomial(double a0)
     {
 	data.push_back(a0);
+        id = count++;
     }
     
     my_polynomial::my_polynomial(const std::initializer_list< std::pair<double, unsigned int> >& elems)
     {
-	for (std::pair<double, unsigned int> e : elems)	   
+	for (auto e : elems)	   
 	{
 	    if (e.second >= data.size())
 		data.resize(e.second + 1);
@@ -119,6 +120,11 @@ namespace oop_labs
 	return (data.size() == 1 && std::abs(data[0]) < std::numeric_limits<double>::epsilon());
     }
 
+    int my_polynomial::get_degree(void) const
+    {
+        return data.size() - 1;
+    }
+    
     double my_polynomial::operator [](unsigned int idx) const
     {
         if (idx >= data.size())
@@ -261,16 +267,16 @@ namespace oop_labs
 
     std::pair<my_polynomial, my_polynomial> modf(const my_polynomial& op1, const my_polynomial& op2)
     {
-	if (op2.isNull())
-	    throw id_exception("Ошибка при делении полиномов: Делитель равен 0", op2.id);
-
         unsigned int op1size = op1.data.size();
 	unsigned int op2size = op2.data.size();
+
+        if (std::abs(op2.data.back()) < std::numeric_limits<double>::epsilon())
+	    throw id_exception("Ошибка при делении полиномов: Делитель равен 0", op2.id);
 
         int diff = op1size - op2size;
 	
 	my_polynomial rem = op1;
-	try
+        if (diff >= 0)
 	{
 	    my_polynomial res(diff + 1);
 
@@ -287,7 +293,7 @@ namespace oop_labs
 	    res.norm();
 	    return std::make_pair(res, rem);
 	}
-	catch (const id_exception& ex) // левый полином "младше" правого
+        else // левый полином "младше" правого
 	{
 	    return std::make_pair(my_polynomial(), rem);
 	}

@@ -18,7 +18,7 @@ namespace oop_labs
     public:
         my_polynomial(double a0 = 0.0);
         
-        my_polynomial(int size, double(*fun)(int));
+        explicit my_polynomial(int degree, double(*fun)(int)=nullptr);
 	
 	my_polynomial(const std::initializer_list< std::pair<double, unsigned int> >&);
 	my_polynomial(const my_polynomial&);
@@ -31,7 +31,9 @@ namespace oop_labs
 	
         friend std::ostream& operator <<(std::ostream&, const my_polynomial&);
 	bool isNull(void) const; // полином равен 0
-	
+
+        int get_degree(void) const;
+        
 	double operator [](unsigned int idx) const; // достает коэффициент при idx-ном члене
         double& operator [](unsigned int idx);
 	

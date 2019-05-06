@@ -16,7 +16,6 @@ namespace oop_labs
 	
 	static int gcd(int, int);
 	static int lcm(int, int);	
-        static void swap_sign(my_rational&);
 	
         unsigned long long id;
 	static unsigned long long count;
@@ -29,8 +28,11 @@ namespace oop_labs
 
 	unsigned long long get_id(void) const;
 	static unsigned long long get_count(void);
-	
-	my_rational& norm(void); // приведение к несократимой
+
+        int get_numer(void) const;
+        int get_denom(void) const;
+        
+	my_rational& norm(void); // приведение к каноническому виду
 	std::pair<int, my_rational> decompose(void) const;
 
 	my_rational& operator +=(const my_rational&);

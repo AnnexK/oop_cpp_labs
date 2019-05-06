@@ -11,18 +11,20 @@ namespace oop_labs
 	    throw id_exception("Ошибка: знаменатель не может быть равен 0", id);
 	numer = n;
 	denom = d;
-	this->norm();
+        norm();
 	count++;
     }
 
     my_rational::my_rational(const my_rational& cp)
     {
+        id = count++;
 	numer = cp.numer;
 	denom = cp.denom;
     }
 
     my_rational::my_rational(my_rational&& mv)
     {
+        id = count++;
         numer = mv.numer;
         denom = mv.denom;
     }
@@ -37,25 +39,30 @@ namespace oop_labs
 	return a / gcd(a, b) * b;
     }
 
-    void my_rational::swap_sign(my_rational& a)
-    {
-	if (a.denom < 0)
-	{
-	    a.numer *= -1;
-	    a.denom *= -1;
-	}
-    }
-    
     my_rational& my_rational::norm(void)
     {
 	int cd = gcd(numer, denom);
 	numer /= cd;
 	denom /= cd;
 
-        swap_sign(*this);
+        if (denom < 0)
+	{
+	    numer = -numer;
+	    denom = -denom;
+	}
 	return *this;
     }
 
+    int my_rational::get_numer(void) const
+    {
+        return numer;
+    }
+
+    int my_rational::get_denom(void) const
+    {
+        return denom;
+    }
+    
     unsigned long long my_rational::get_id(void) const
     {
 	return id;
